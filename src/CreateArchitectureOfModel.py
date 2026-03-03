@@ -5,6 +5,30 @@ class RCNN(nn.Module):
     def __init__(self, num_classes):
         super(RCNN, self).__init__()
 
+        # Convolutional feature extractor
+        #
+        # This CNN block extracts hierarchical visual features from input images.
+        #
+        # Architecture:
+        # - Conv(3 → 64) + ReLU
+        # - Conv(64 → 64) + ReLU
+        # - MaxPool (downsampling by factor of 2)
+        # - Conv(64 → 128) + ReLU
+        # - MaxPool (downsampling by factor of 2)
+        #
+        # Details:
+        # - Kernel size = 3x3 with padding=1 preserves spatial dimensions.
+        # - ReLU introduces non-linearity.
+        # - MaxPooling reduces spatial resolution and increases receptive field.
+        #
+        # Output:
+        # Produces 128 feature maps with spatial size reduced by 4×
+        # (due to two MaxPool layers).
+        #
+        # Purpose:
+        # To transform raw RGB images into compact, high-level feature
+        # representations suitable for sequence modeling (e.g., RCNN / LSTM).
+
         self.cnn = nn.Sequential(
             nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1),
             nn.ReLU(inplace=True),
@@ -15,6 +39,9 @@ class RCNN(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
         )
+        # input: 128-dim feature vector (from Sequential)
+        #2 layers, 255 hidden units per direction
+        # Left to right and right to left context matters
 
         self.rnn = nn.LSTM(
             input_size=128,
