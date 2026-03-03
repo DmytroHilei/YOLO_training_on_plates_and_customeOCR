@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torchvision import datasets, transforms
-from GetTextEasyOCR import RCNN, train_one_epoch, validate
+from CreateArchitectureOfModel import RCNN, train_one_epoch, validate
 from torch.utils.data import DataLoader
 from dataloader import PlateDataset, collate_fn
 
