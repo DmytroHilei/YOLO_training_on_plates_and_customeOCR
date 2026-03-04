@@ -18,7 +18,7 @@ transform = transforms.Compose([
     transforms.Resize((64, 256)),
     transforms.ToTensor(),
 ])
-img = cv2.imread(r"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\UC3M-LP\test\00022.jpg")
+img = cv2.imread(r"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\UC3M-LP\images\val\00037.jpg")
 if img is None:
     print("Could not load the image")
     exit(1)
