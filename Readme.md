@@ -112,8 +112,6 @@ Apply greedy CTC decoding
 
 Output final plate text
 
-6.) Images
-
 
 Notes
 
