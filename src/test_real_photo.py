@@ -4,7 +4,7 @@ import numpy as np
 from ultralytics import YOLO
 import cv2
 
-model = YOLO(R"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\runs\detect\train9\weights\best.pt")
+model = YOLO(R"C:\Users\giley\PycharmProjects\YOLO_training_on_plates_and_customeOCR\models\best.pt")
 
 img = cv2.imread(R"C:\Users\giley\Downloads\parking_car.jpg")
 

@@ -17,7 +17,8 @@ model.eval()
 transform = transforms.Compose([
     transforms.Resize((64, 256)),
     transforms.ToTensor(),
-])
+]) #Transforming images
+
 img = cv2.imread(r"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\UC3M-LP\images\val\00037.jpg")
 if img is None:
     print("Could not load the image")
@@ -25,7 +26,8 @@ if img is None:
 
 roi = findRoi(img)
 
-roi_pil = Image.fromarray(roi[:, :, ::-1])
+roi_pil = Image.fromarray(roi[:, :, ::-1]) #Open CV using BGR, I change to RGB
+
 roi_tensor = transform(roi_pil).unsqueeze(0).to(device)
 with torch.no_grad():
     log_probs = model(roi_tensor)

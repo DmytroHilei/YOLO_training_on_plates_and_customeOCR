@@ -2,6 +2,7 @@ import json
 import os
 import re
 
+#Initialize working directories
 
 json_dir = r"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\UC3M-LP\images\val"
 output_file = r"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\labelsForOCR\val.txt"
@@ -11,7 +12,8 @@ img_path_dir = r"C:\Users\giley\PycharmProjects\Plates_YOLO_Training\UC3M-LP\ima
 
 def clean_plate(text):
     text = text.upper()
-    return re.sub(r'[^A-Z0-9]', '', text)
+    text = text[2:] #remove first 2 characters from label (given in dataset), they are not presented in the images
+    return re.sub(r'[^A-Z0-9]', '', text) #We just make all letters upercase and remove other symbols that are not in patters
 
 with open(output_file, "w") as out_f:
     for filename in os.listdir(json_dir):

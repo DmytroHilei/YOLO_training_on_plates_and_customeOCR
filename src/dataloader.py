@@ -23,7 +23,7 @@ class PlateDataset(Dataset):
         self.transform = transforms.Compose([
             transforms.Resize((64, 256)),
             transforms.ToTensor(),
-        ])
+        ]) # transform on the images. Resizing and making them tensor
 
     def __len__(self):
         return len(self.samples)
@@ -42,6 +42,7 @@ class PlateDataset(Dataset):
 
         return image, encoded_label
 
+#Collecting images, targets from batch
 def collate_fn(batch):
     images = []
     targets = []
